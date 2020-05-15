@@ -1,0 +1,68 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5c3044273c6a26d121e2e95cbf519534c8b6c010ab904f1f8700c993247e62ef
+
+name:           sim-eight
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/sim-eight#readme>
+homepage:       https://github.com/githubuser/sim-eight#readme
+bug-reports:    https://github.com/githubuser/sim-eight/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/sim-eight
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_sim_eight
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , optparse-applicative
+    , random
+  default-language: Haskell2010
+
+executable sim-eight-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_sim_eight
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , optparse-applicative
+    , random
+    , sim-eight
+  default-language: Haskell2010
+
+test-suite sim-eight-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_sim_eight
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , optparse-applicative
+    , random
+    , sim-eight
+  default-language: Haskell2010
