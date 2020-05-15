@@ -19,7 +19,7 @@ options = Options
          <> short 'p'
          <> showDefault
          <> value 0.5
-         <> help "Probability for yes-no" )
+         <> help "Probability for 1 mode" )
 
 
 main :: IO ()
@@ -32,5 +32,8 @@ main = greet =<< execParser opts
 greet :: Options -> IO ()
 greet (Options 1 p) = do
   rand <- getYesOrNo p
+  print rand
+greet (Options 2 _) = do
+  rand <- getCrystalBallAnswer
   print rand
 greet _ = return ()
