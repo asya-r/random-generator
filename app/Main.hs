@@ -13,7 +13,7 @@ options = Options
       <$> option auto
           ( long "mode"
          <> metavar "MODE"
-         <> help "1 for yes-no, 2 for crystal ball" )
+         <> help "1 for yes-no, 2 for crystal ball, 3 for dice game" )
       <*> option auto
           ( long "probability"
          <> short 'p'
@@ -27,7 +27,7 @@ main = greet =<< execParser opts
  where
    opts = info (options <**> helper)
      ( fullDesc
-    <> progDesc "Print MODE (1 for yes-no, 2 for crystal ball)" )
+    <> progDesc "Print MODE (1 for yes-no, 2 for crystal ball, 3 for dice game)" )
 
 greet :: Options -> IO ()
 greet (Options 1 p) = do
@@ -35,5 +35,8 @@ greet (Options 1 p) = do
   print rand
 greet (Options 2 _) = do
   rand <- getCrystalBallAnswer
+  print rand
+greet (Options 3 _) = do
+  rand <- rollDice
   print rand
 greet _ = return ()

@@ -1,6 +1,7 @@
 module Lib
     ( getYesOrNo
     ,getCrystalBallAnswer
+    ,rollDice
     ) where
 
 import System.Random
@@ -37,4 +38,23 @@ getCrystalBallAnswer = do
   a <- getStdRandom(randomR (0 :: Double, 1))
   return $ answers !! (helper a 1 (toEnum $ length answers))
     where
-      helper val num leng = if val - 1/leng <= 0 then num-1 else helper (val - 1/leng) (num + 1) leng
+      helper val num leng = if val - 1/leng <= 0
+                            then num-1
+                            else helper (val - 1/leng) (num + 1) leng
+
+distribution :: Int -> Double
+distribution num = [0.1,
+                    0.15,
+                    0.09,
+                    0.23,
+                    0.3,
+                    0.13] !! (num - 1)
+
+rollDice :: IO Int
+rollDice = do
+  a <- getStdRandom(randomR (0 :: Double, 1))
+  return $ helper a 1
+    where
+      helper randNum val = if randNum - (distribution val) <= 0
+                           then val
+                           else helper (randNum - (distribution val)) (val + 1)
